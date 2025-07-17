@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background - Niroj Koirala</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN for Social Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-HHsN7YJYH6G4F8iQlwWgllufQNk8HiRmNRe+0dcB0l+4U3gOsm1O0ePj4G6ufaxDZppYvYdK6VSLX4U9vPDRkg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+
+    <style>
+        /* RESET & GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Dark-themed background with subtle gradient */
+            background: linear-gradient(135deg, #1e1e2f, #353545);
+            color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            scroll-behavior: smooth; /* Smooth scrolling */
+            overflow-x: hidden;
+            transition: background 0.5s ease;
+        }
+
+        /* Navbar Styling */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(30, 30, 47, 0.95);
+            color: #f0f0f0;
+            padding: 15px 30px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background-color: rgba(30, 30, 47, 1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Logo Styling */
+        .nav .logo {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .nav .logo img {
+            height: 40px; /* Adjust as needed */
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .nav.scrolled .logo img {
+            transform: scale(1.1);
+        }
+
+        /* Navigation Links */
+        .nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav a:hover {
+            color: #1ABC9C;
+            background-color: rgba(26, 188, 156, 0.2);
+        }
+
+        /* Main Content Styling */
+        .container {
+            flex: 1;
+            width: 100%;
+            padding: 120px 20px 60px; /* Top padding to accommodate fixed nav */
+            background: transparent;
+        }
+
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* The vertical timeline line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #1ABC9C;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            animation: pulse 4s infinite;
+        }
+
+        /* Timeline Item Container */
+        .timeline-container {
+            padding: 20px 40px;
+            position: relative;
+            background-color: #2c2c3e;
+            border-radius: 8px;
+            width: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        /* Position the container to the left */
+        .timeline-container.left {
+            left: 0;
+        }
+
+        /* Position the container to the right */
+        .timeline-container.right {
+            left: 50%;
+        }
+
+        /* Content Styling */
+        .timeline-container .content {
+            padding: 20px 30px;
+            background-color: #3e3e5e;
+            border-radius: 8px;
+            position: relative;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Position the arrow */
+        .timeline-container.left::before {
+            content: " ";
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent #3e3e5e;
+            transition: border-color 0.3s ease;
+        }
+
+        .timeline-container.right::before {
+            content: " ";
+            position: absolute;
+            top: 20px;
+            left: -15px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent #3e3e5e transparent transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Timeline Icons */
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 20px;
+            right: -10px;
+            background-color: #1ABC9C;
+            border: 4px solid #333;
+            border-radius: 50%;
+            z-index: 1;
+            animation: bounceIn 1s ease forwards;
+        }
+
+        .timeline-container.right::after {
+            left: -10px;
+        }
+
+        /* Timeline Heading */
+        .timeline-container .content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1ABC9C;
+            transition: color 0.3s ease;
+        }
+
+        /* Timeline Paragraph */
+        .timeline-container .content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+            color: #f0f0f0;
+        }
+
+        /* Unordered List Styling */
+        .timeline-container .content ul {
+            list-style: disc inside;
+            margin-top: 10px;
+            color: #f0f0f0;
+            text-align: left;
+        }
+
+        /* Hover Effects */
+        .timeline-container:hover {
+            transform: translateY(-10px);
+            background-color: #35354f;
+        }
+
+        .timeline-container:hover .content {
+            background-color: #4a4a69;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+
+            80% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(26, 188, 156, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
+            }
+        }
+
+        /* Footer Styling */
+        footer {
+            padding: 30px 20px;
+            margin-top: 40px; /* Increased space above the footer */
+            /* Dark-themed gradient background */
+            background: linear-gradient(135deg, #2c2c3e 0%, #1e1e2f 100%);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite, fadeInFooter 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            color: #f0f0f0;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeInFooter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer Navigation Links */
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #f0f0f0;
+            font-size: 1rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links ul li a:hover {
+            color: #1ABC9C;
+        }
+
+        /* Footer Social Media Logos Styling */
+        .footer-social {
+            display: flex;
+            gap: 20px; /* Space between icons */
+            margin-top: 20px; /* Space below navigation links */
+        }
+
+        .footer-social a {
+            position: relative; /* For tooltip positioning */
+            display: inline-block;
+            transition: transform 0.3s ease; /* Smooth hover transition */
+        }
+
+        .footer-social a img {
+            width: 40px; /* Increased width */
+            height: 25px; /* Increased height for oval shape */
+            object-fit: cover; /* Ensures images cover the container without distortion */
+            border-radius: 50% / 40%; /* Creates an oval shape */
+            transition: transform 0.3s ease; /* Smooth hover transition */
+        }
+
+        .footer-social a:hover img {
+            transform: scale(1.2); /* Enlarge logo on hover */
+        }
+
+        /* Social Media Icons with Tooltips */
+        .footer-social a::after {
+            content: "Let's Connect";
+            position: absolute;
+            bottom: -55px; /* Increased space below the icon */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1ABC9C;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer-social a::before {
+            content: '';
+            position: absolute;
+            top: 100%; /* Position below the tooltip */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1ABC9C transparent transparent transparent; /* Creates a downward-pointing arrow */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover::after,
+        .footer-social a:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px); /* Adjusted for smoother appearance */
+        }
+
+        /* Footer Rights */
+        .footer-rights {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            margin-top: 20px; /* Space above the rights text */
+        }
+
+        /* Back to Top Button Styling */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px; /* Distance from the bottom */
+            right: 40px;  /* Distance from the right */
+            width: 50px;
+            height: 50px;
+            background-color: #1ABC9C; /* Matching your accent color */
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            z-index: 1000; /* Ensures it stays above other elements */
+            cursor: pointer;
+        }
+
+        .back-to-top:hover {
+            background-color: #16a085;
+            transform: scale(1.1);
+        }
+
+        /* Show Button when Scrolled Down */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            .timeline-container.left,
+            .timeline-container.right {
+                width: 50%;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-container.right {
+                left: 0%;
+            }
+
+            /* Adjust the circle position */
+            .timeline-container::before {
+                left: 15px;
+            }
+
+            .timeline-container.right::before {
+                left: 15px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            /* Navbar adjustments */
+            .nav {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+
+            .nav .logo {
+                position: static;
+                margin-bottom: 10px;
+            }
+
+            .nav a {
+                margin: 5px 10px;
+                font-size: 0.9rem;
+            }
+
+            /* Container adjustments */
+            .container {
+                margin: 120px auto 60px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .timeline-container .content h2 {
+                font-size: 1.3rem;
+            }
+
+            .timeline-container .content p {
+                font-size: 0.95rem;
+            }
+
+            /* Footer adjustments */
+            .footer-links ul {
+                gap: 15px;
+            }
+
+            .footer-social {
+                gap: 15px;
+            }
+
+            .footer-social a img {
+                width: 25px;
+                height: 20px;
+            }
+
+            .footer-social a {
+                font-size: 1.4rem;
+            }
+
+            .footer-social a::after {
+                bottom: -45px; /* Adjust tooltip positioning for smaller screens */
+            }
+
+            /* Back to Top Button adjustments for smaller screens */
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav" id="navbar">
+        <div class="logo">
+            <!-- Use an image for logo or text -->
+            <!-- Example with image logo: -->
+            <a href="index.html">
+                <img src="Nirojlogo copy.png" alt="Logo">
+            </a>
+            <!-- Example with text logo (uncomment if not using image): -->
+            <!-- <a href="index.html" class="logo-text">Niroj Koirala</a> -->
+        </div>
+        <!-- Navigation Links -->
+        <a href="index.html" target="_blank">Home</a>
+        <a href="background.html" target="_blank">Background</a>
+        <a href="certificate.html" target="_blank">Certificate</a>
+        <a href="projects.html" target="_blank">Projects</a>
+        <a href="CONNNN.HTML" target="_blank">Contact Me</a>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Background</h1>
+        <div class="timeline">
+            <!-- Timeline Item 1: Combined Early Life, Education, and Academic Journey -->
+            <div class="timeline-container left" style="animation-delay: 0.2s;">
+                <div class="content">
+                    <h2>Early Life, Education, and Academic Journey</h2>
+                    <p>
+                        I was born and raised in the picturesque hills of Nepal, a country celebrated for its stunning landscapes
+                        and rich cultural heritage. Growing up in such an environment, technology was not initially a focal point
+                        in my life. However, as I matured, I developed a keen interest in the transformative power of technology and
+                        its potential to shape the future. This realization led me to pursue a deeper understanding of the field.
+                        <br><br>
+                        Eager to expand my horizons, I moved on to LaGuardia Community College in New York to study Computer Science.
+                        At LaGuardia, I dedicated myself to my coursework and projects, graduating with honors and a GPA of 3.89.
+                        The rigorous academic environment and hands-on experience at LaGuardia significantly enhanced my understanding
+                        of technology.
+                        <br><br>
+                        Following my graduation from LaGuardia, I transferred to York College to further my studies. My time at York
+                        College has been both challenging and rewarding. I have had the opportunity to delve into advanced topics in
+                        Computer Science and engage in meaningful research. I am honored to have been awarded an NSF scholarship,
+                        which has provided crucial support for my studies and research endeavors. This scholarship has allowed me
+                        to focus more deeply on my academic and professional goals.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2: TIQC Internship -->
+            <div class="timeline-container right" style="animation-delay: 0.4s;">
+                <div class="content">
+                    <h2>TIQC Internship</h2>
+                    <p>
+                        During my time at York College, I had the invaluable opportunity to intern with TIQC, a leading tech firm specializing
+                        in innovative software solutions. At TIQC, I worked on auditing webpages to ensure compliance and performance, participated
+                        in organizational projects aimed at streamlining processes, developed and maintained scalable web applications to enhance user
+                        experience, and collaborated effectively with diverse teams to achieve project goals. This internship not only honed my technical
+                        skills but also enhanced my ability to work efficiently in a dynamic and fast-paced environment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3: CIRE Project -->
+            <div class="timeline-container left" style="animation-delay: 0.6s;">
+                <div class="content">
+                    <h2>CIRE Project</h2>
+                    <p>
+                        As part of my academic and research endeavors at York College, I led the CUNY Immersive Research Experience (CIRE) Project,
+                        funded by CUNY. My research focuses on designing and implementing smart traffic light control systems.
+                        This project involves using artificial intelligence to improve urban traffic management, reduce congestion, and enhance overall efficiency.
+                        Successfully completing the CIRE Project has strengthened my skills in AI and machine learning, preparing me to contribute effectively to future
+                        technological advancements.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4: Future Aspirations -->
+            <div class="timeline-container right" style="animation-delay: 0.8s;">
+                <div class="content">
+                    <h2>Future Aspirations</h2>
+                    <p>
+                        Looking ahead, I am enthusiastic about the possibilities in the tech industry. One of my primary goals is to
+                        develop a soccer game that combines my passion for the sport with my growing expertise in technology.
+                        I am eager to create innovative and immersive digital experiences that can connect people and enhance their
+                        enjoyment of the game.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5: Personal Interests -->
+            <div class="timeline-container left" style="animation-delay: 1s;">
+                <div class="content">
+                    <h2>Personal Interests</h2>
+                    <p>
+                        Outside of academics and professional pursuits, I have a diverse set of interests that keep me engaged and motivated.
+                        I am passionate about soccer and enjoy following and playing the sport whenever possible. Chess is another favorite
+                        pastime, as it challenges my strategic thinking and problem-solving skills. Additionally, I stay informed by keeping
+                        up with current events and news, which helps me remain connected with the world and informed about global developments.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!-- Footer Navigation Links -->
+            <div class="footer-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="background.html">Background</a></li>
+                    <li><a href="certificate.html">Certificate</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="CONNNN.HTML">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="footer-social">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/niroj777/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="LINKDEN LOGO copy.png" alt="LinkedIn Logo">
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/Niroj Koirala" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <img src="facebook logo copy.jpeg" alt="Facebook Logo">
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/neeroz.7" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <img src="instagram logo copy.jpeg" alt="Instagram Logo">
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Rights -->
+        <div class="footer-rights">
+            © 2025 Niroj Koirala | All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">
+        &#8679; <!-- Upwards arrow symbol -->
+    </a>
+
+    <!-- JavaScript for Navbar Scroll Effect -->
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Get the Back to Top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        // When the user scrolls down 300px from the top of the document, show the button
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // When the user clicks on the button, scroll to the top of the document smoothly
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
