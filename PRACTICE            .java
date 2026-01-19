@@ -17,6 +17,7 @@ public class Main {
             for (int j = 0; j < result[i].length; ++j) {
 
                 double c = 0;
+             
 
                 for (int k = 0; k < a[i].length; ++k) {
 
