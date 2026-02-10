@@ -7,7 +7,7 @@ public class Bar {
 	private float low, close, adjClose;
 	private long volume;
 	
-	public Bar(String st)
+	public Bar(String st) 
 	{
 		String[] stAr = st.split(",");
 		if(stAr.length != 7) {
