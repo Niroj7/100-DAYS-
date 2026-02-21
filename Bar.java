@@ -1,4 +1,4 @@
-package mac286.project;
+package mac286.projecT;
 
 public class Bar {
 	private String Date;
