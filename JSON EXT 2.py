@@ -4,7 +4,7 @@
 The program uses Python’s built-in urllib and json libraries to:
 
 Send a request to the API with the given location
-
+.
 Parse the returned JSOnn
 
 Pull out the plus_code from the first result
